@@ -28,4 +28,5 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
   // ...
+  console.log("failed to sign in: " + errorCode + ": " + errorMessage);
 });
