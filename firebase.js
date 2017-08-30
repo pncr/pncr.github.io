@@ -13,13 +13,17 @@ console.log("firebase loaded!");
 var provider = new firebase.auth.GoogleAuthProvider();
 
 console.log("signing in");
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
+firebase.auth().signInWithRedirect(provider);
+
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // ...
+    console.log("signed in: " + token);
+  }
   // The signed-in user info.
   var user = result.user;
-  // ...
-  console.log("signing in success: " + user);
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
@@ -29,7 +33,6 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
   // ...
-  console.log("failed to sign in: " + errorCode + ": " + errorMessage);
 });
 
 console.log("done signing in");
