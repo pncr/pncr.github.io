@@ -19,7 +19,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // The signed-in user info.
   var user = result.user;
   // ...
-  console.log("signing in success");
+  console.log("signing in success: " + user);
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
