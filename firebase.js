@@ -1,3 +1,5 @@
+var signedIn = 0;
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyBEFgCJYx1yHWZiqFVLyydoV_Ixd8HTAIg",
@@ -13,7 +15,10 @@ console.log("firebase loaded!");
 var provider = new firebase.auth.GoogleAuthProvider();
 
 console.log("signing in");
-firebase.auth().signInWithRedirect(provider);
+if (!signedIn) {
+  firebase.auth().signInWithRedirect(provider);
+}
+
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
@@ -21,6 +26,7 @@ firebase.auth().getRedirectResult().then(function(result) {
     var token = result.credential.accessToken;
     // ...
     console.log("signed in: " + token);
+    signedIn = 1;
   }
   // The signed-in user info.
   var user = result.user;
