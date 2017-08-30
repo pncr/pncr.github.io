@@ -8,7 +8,7 @@ var config = {
   messagingSenderId: "425685988468"
 };
 firebase.initializeApp(config);
-console.log("firebase loaded.");
+console.log("firebase loaded!");
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
