@@ -12,10 +12,11 @@ var config = {
 firebase.initializeApp(config);
 console.log("firebase loaded!");
 
-var provider = new firebase.auth.GoogleAuthProvider();
+
 
 console.log("signing in");
 if (!signedIn) {
+  var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithRedirect(provider);
 
   firebase.auth().getRedirectResult().then(function(result) {
